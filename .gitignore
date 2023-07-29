@@ -1,0 +1,14 @@
+*.tfvars
+*.tfvars.json
+.terraformrc
+terraform.rc
+crash.log
+crash.*.log
+# Local .terraform directories
+**/.terraform/*
+# PUBLIC Y PRIVATE KEYS
+practicas_key
+practicas_key.pub
+# .tfstate files
+*.tfstate
+*.tfstate.*
