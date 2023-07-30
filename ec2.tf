@@ -9,21 +9,6 @@ resource "aws_instance" "ec2_bastion" {
   key_name               = aws_key_pair.PracticasI-key.key_name
   vpc_security_group_ids = [aws_security_group.PracticasI-sg.id]
   subnet_id              = aws_subnet.PublicS1.id
-  provisioner "remote-exec" {
-    inline = [
-      "sudo apt update -y",
-      "sudo apt upgrade -y",
-      "sudo apt install mysql-server -y",
-      "sudo apt install python3",
-      "sudo apt install git",
-      "sudo apt install nginx"
-    ]
-  }
-  connection {
-    host        = self.public_ip
-    user        = var.user_ssh
-    private_key = file("${var.PATH_KEYPAIR}")
-  }
   depends_on = [
     aws_db_instance.mysql-instance
   ]
