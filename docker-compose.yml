@@ -1,0 +1,26 @@
+services: 
+  practicas_db:
+    restart: on-failure
+    container_name: practicas_db
+    command: --default-authentication-plugin=mysql_native_password
+    image: mysql:latest
+    ports:
+      - "3306:3306"
+    networks:
+      - app_net
+    volumes:
+      - practicas-vol:/var/lib/mysql
+      - ./db_init.sql:/docker-entrypoint-initdb.d/db_init.sql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: practicas
+      MYSQL_PASSWORD: practicas
+      MYSQL_DATABASE: PracticasI_db
+    
+
+networks:
+  app_net:
+    driver: bridge
+
+volumes:
+  practicas-vol:
